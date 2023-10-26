@@ -8,19 +8,21 @@
 	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Handicraft list</h1>
+	<h1>Marketplace for handmade products</h1>
 
-
-	<div class="card" th:each="handicraft : ${handicrafts}">
-		<div class="card-header" th:text="${handicraft.name}"></div>
-		<div class="card-body">
-			<span th:text="${handicraft.description}"></span>
-			<br> 
-			<span th:text="${handicraft.price} + €"></span>
-		</div>
-		<div class="card-footer">
-		<input type="submit" value="Seller's contact information">
+	<div class="row">
+		<div class="card col-sm-4" th:each="handicraft : ${handicrafts}">
+			<div class="card-header" th:text="${handicraft.name}"></div>
+			<div class="card-body">
+				<span th:text="${handicraft.description}"></span> <br> 
+				<span th:text="${handicraft.price} + €"></span>
+			</div>
+			<div class="card-footer">
+				<input type="submit" value="Seller's contact information">
+			</div>
 		</div>
 	</div>
+	<a href="/add">Add for sale</a>
+
 </body>
 </html>

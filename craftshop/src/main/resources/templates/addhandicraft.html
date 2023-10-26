@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Add to sale</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+
+	<h1>Sell your work!</h1>
+	
+	<p>Fill in the form below to put your work on sale!</p>
+	
+	<a href= "/shop">Back</a>
+	
+	<form th:object="${handicraft}" th:action="@{/save}" action="#" method="post">
+		<label for="name">Product's name</label> 
+		<input type="text" id="name" th:field=*{name} />
+		<label for="description">Description</label>
+		<input type="text" id="description" th:field=*{description}/>
+		<label for="price">Price (in euros)</label>
+		<input type="text" id="price" th:field=*{price}/>
+		<input type="submit" value="Add for sale"/>
+	</form>
+
+</body>
+</html>

@@ -13,9 +13,9 @@ public class Handicraft {
 	private Long id;
 	private String name;
 	private String description;
-	//private Category category;
+	// private Category category;
 	private Long price;
-	//private Seller seller;
+	// private Seller seller;
 
 	public Handicraft(String name, String description, Long price) {
 		super();
@@ -52,20 +52,18 @@ public class Handicraft {
 		this.description = description;
 	}
 
-
 	public Long getPrice() {
 		return price;
 	}
 
 	public void setPrice(Long price) {
 		this.price = price;
-	
+
 	}
 
 	@Override
 	public String toString() {
-		return "Handicraft [id=" + id + ", name=" + name + ", description=" + description 
-				+ ", price=" + price +  "]";
+		return "Handicraft [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
 	}
 
 }
