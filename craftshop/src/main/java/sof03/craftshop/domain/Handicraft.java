@@ -1,9 +1,13 @@
 package sof03.craftshop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Handicraft {
@@ -13,19 +17,32 @@ public class Handicraft {
 	private Long id;
 	private String name;
 	private String description;
-	// private Category category;
+
+	@ManyToOne
+	@JsonIgnoreProperties("handicrafts")
+	@JoinColumn(name = "categoryid")
+	private Category category;
 	private Long price;
 	// private Seller seller;
 
-	public Handicraft(String name, String description, Long price) {
+	public Handicraft(String name, String description, Category category, Long price) {
 		super();
 		this.name = name;
 		this.description = description;
+		this.category = category;
 		this.price = price;
 	}
 
 	public Handicraft() {
 
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public Long getId() {
@@ -63,7 +80,10 @@ public class Handicraft {
 
 	@Override
 	public String toString() {
-		return "Handicraft [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
+		return "Handicraft [id=" + id + ", name=" + name + ", description=" + description + ", category=" + category
+				+ ", price=" + price + "]";
 	}
+
+	
 
 }

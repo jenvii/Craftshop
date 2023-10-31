@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import sof03.craftshop.domain.HandicraftRepository;
+import sof03.craftshop.domain.CategoryRepository;
 import sof03.craftshop.domain.Handicraft;
 
 @Controller
@@ -15,6 +16,9 @@ public class HandicraftController {
 
 	@Autowired
 	HandicraftRepository handicraftRepository;
+	
+	@Autowired
+	CategoryRepository categoryRepository;
 
 	@RequestMapping(value = "/shop", method = RequestMethod.GET)
 	public String handictaftList(Model model) {
@@ -25,6 +29,7 @@ public class HandicraftController {
 	@RequestMapping(value = "/add")
 	public String addHandicraft(Model model) {
 		model.addAttribute("handicraft", new Handicraft());
+		model.addAttribute("categories", categoryRepository.findAll());
 		return "addhandicraft";
 	}
 	
@@ -40,4 +45,11 @@ public class HandicraftController {
 		return "redirect:/shop";
 	}
 
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String editHandicraft(@PathVariable("id") Long handicraftId, Model model) {
+		Handicraft handicraft = handicraftRepository.findById(handicraftId).orElse(null);
+		model.addAttribute("handicraft", handicraft);
+		model.addAttribute("categories", categoryRepository.findAll());
+		return "edithandicraft";
+	}
 }

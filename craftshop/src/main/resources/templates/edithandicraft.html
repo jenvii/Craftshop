@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Edit handicraft</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Edit handicraft</h1>
+	<form th:object="${handicraft}" th:action="@{/save}" action="#" method="post">
+		<label for="name">Name</label>
+		<input type="text" id="name" th:field=*{name}/>
+		<label for="description">Description</label>
+		<input type="text" id="description" th:field=*{description}/>
+		<label for="category">Category</label>
+		<select name="category" id="category" th:field="*{category}">
+    		<option th:each="category : ${categories}" th:value="${category.categoryid}" th:text="${category.name}" />
+		</select>
+		<label for="price">Price</label>
+		<input type="text" id="price" th:field=*{price}/>
+		<input type="hidden" id="id" th:field=*{id}/>
+		<input type="submit" value="Edit handicraft"/>
+	</form>
+</body>
+</html>

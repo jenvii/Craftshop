@@ -15,11 +15,13 @@
 			<div class="card-header" th:text="${handicraft.name}"></div>
 			<div class="card-body">
 				<span th:text="${handicraft.description}"></span> <br> 
+				<span th:text="${handicraft.category != null ? handicraft.category.name : ''}"></span> <br>
 				<span th:text="${handicraft.price} + €"></span>
 			</div>
 			<div class="card-footer">
 				<input type="submit" value="Seller's contact information">
-				<a th:href="@{/delete/{id} (id=${handicraft.id})}">Remove product</a>
+				<a th:href="@{/edit/{id} (id=${handicraft.id})}">Edit</a>
+				<a th:href="@{/delete/{id} (id=${handicraft.id})}">Remove</a>
 			</div>
 		</div>
 	</div>

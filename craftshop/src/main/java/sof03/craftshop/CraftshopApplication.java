@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import sof03.craftshop.domain.HandicraftRepository;
 import sof03.craftshop.domain.Handicraft;
+import sof03.craftshop.domain.Category;
+import sof03.craftshop.domain.CategoryRepository;
 
 @SpringBootApplication
 public class CraftshopApplication {
@@ -17,19 +19,31 @@ public class CraftshopApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CraftshopApplication.class, args);
 	}
-	
+
 	@Bean
-	public CommandLineRunner handicrafts(HandicraftRepository handicraftRepository) {
+	public CommandLineRunner handicrafts(HandicraftRepository handicraftRepository,
+			CategoryRepository categoryRepository) {
 		return (args) -> {
+			log.info("save categories");
+	        Category category1 = new Category("Crochet");
+	        categoryRepository.save(category1);
+	        Category category2 = new Category("Knit");
+	        categoryRepository.save(category2);
+	        log.info("fetch all categories");
+	        for (Category category : categoryRepository.findAll()) {
+	            log.info(category.toString());
+	        }
+			
 			log.info("save handicrafts");
-			Handicraft handicraft1 = new Handicraft("Socks", "100% wool socks. Comfy for winter!", 10L);
+			Handicraft handicraft1 = new Handicraft("Socks", "100% wool socks. Comfy for winter!", category2, 10L);
 			handicraftRepository.save(handicraft1);
-			Handicraft handicraft2 = new Handicraft("Crochet top", "80% wool cool top for everyday wear", 30L);
+			Handicraft handicraft2 = new Handicraft("Crochet top", "80% wool cool top for everyday wear", category1, 30L);
 			handicraftRepository.save(handicraft2);
 			for (Handicraft handicraft : handicraftRepository.findAll()) {
 				log.info(handicraft.toString());
 			}
+			
 		};
-	
+
 	}
 }
