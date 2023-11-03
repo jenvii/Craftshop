@@ -19,13 +19,14 @@
 				<span th:text="${handicraft.price} + €"></span>
 			</div>
 			<div class="card-footer">
-				<input type="submit" value="Seller's contact information">
-				<a th:href="@{/edit/{id} (id=${handicraft.id})}">Edit</a>
-				<a th:href="@{/delete/{id} (id=${handicraft.id})}">Remove</a>
+				<a th:href="@{/seller/{id} (id=${handicraft.id})}" class="btn btn-secondary">Seller's contact information</a>
+				<a th:href="@{/edit/{id} (id=${handicraft.id})}" class="btn btn-info">Edit</a>
+				<a th:href="@{/delete/{id} (id=${handicraft.id})}" class="btn btn-danger">Remove</a>
 			</div>
 		</div>
 	</div>
-	<a href="/add">Add for sale</a>
+	<br>
+	<a href="/add" class="btn btn-success">Add for sale</a>
 
 </body>
 </html>

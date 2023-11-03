@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Seller's contact information</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Seller's contact information</h1>
+	<div th:each="seller : ${seller}">
+		<p>
+			Name: <span th:text="${seller.name}"></span>
+		</p>
+		<p>
+			Phone number: <span th:text="${seller.phonenumber}"></span>
+		</p>
+		<p>
+			Email: <span th:text="${seller.email}"></span>
+		</p>
+		<p>
+			Product: <span th:text="${handicraft.name}"></span>
+		</p>
+	</div>
+	<a href="/shop" class="btn btn-light">Back</a>
+</body>
+</html>

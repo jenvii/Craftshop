@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import sof03.craftshop.domain.HandicraftRepository;
+import sof03.craftshop.domain.Seller;
+import sof03.craftshop.domain.SellerRepository;
 import sof03.craftshop.domain.CategoryRepository;
 import sof03.craftshop.domain.Handicraft;
 
@@ -19,6 +21,9 @@ public class HandicraftController {
 	
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	SellerRepository sellerRepository;
 
 	@RequestMapping(value = "/shop", method = RequestMethod.GET)
 	public String handictaftList(Model model) {
@@ -28,15 +33,20 @@ public class HandicraftController {
 	
 	@RequestMapping(value = "/add")
 	public String addHandicraft(Model model) {
-		model.addAttribute("handicraft", new Handicraft());
-		model.addAttribute("categories", categoryRepository.findAll());
-		return "addhandicraft";
+		Handicraft handicraft = new Handicraft();
+        Seller seller = new Seller();
+		model.addAttribute("handicraft", handicraft);
+	    model.addAttribute("seller", seller);
+	    model.addAttribute("categories", categoryRepository.findAll());
+	    return "addhandicraft";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveHandicraft(Handicraft handicraft) {
-		handicraftRepository.save(handicraft);
-		return "redirect:shop";
+	public String saveHandicraft(Handicraft handicraft, Seller seller) {
+		handicraft.setSeller(seller);
+	    sellerRepository.save(seller);
+	    handicraftRepository.save(handicraft);
+	    return "redirect:/shop";
 	}
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
