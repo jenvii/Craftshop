@@ -3,6 +3,8 @@
 <head>
 <title>Edit handicraft</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
 	<h1>Edit handicraft</h1>
@@ -19,6 +21,7 @@
 		<input type="text" id="price" th:field=*{price}/>
 		<input type="hidden" id="id" th:field=*{id}/>
 		<input type="submit" value="Edit handicraft"/>
-	</form>
+	</form> <br>
+	<a href="/shop" class="btn btn-light">Back</a>
 </body>
 </html>

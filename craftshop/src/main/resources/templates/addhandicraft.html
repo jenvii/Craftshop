@@ -8,35 +8,40 @@
 	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-
+<div class="row">
+<div class="col-sm-4">
 	<h1>Sell your work!</h1>
 
 	<p>Fill in the form below to put your work on sale!</p>
 
 	<form th:object="${handicraft}" th:action="@{/save}" action="#"
 		method="post">
-		<label for="name">Product's name</label> <input type="text" id="name"
-			th:field=*{name} /><br> <label for="description">Description</label>
+		<label for="name">Product's name</label> 
+		<input type="text" id="name"th:field=*{name} /><br> 
+		<label for="description">Description</label>
 		<input type="text" id="description" th:field=*{description} /><br>
-		<label for="Category">Category</label> <select name="category"
-			id="category" th:field="*{category}">
-			<option th:each="category : ${categories}"
-				th:value="${category.categoryid}" th:text="${category.name}" />
+		<label for="Category">Category</label> 
+		<select name="category" id="category" th:field="*{category}">
+			<option th:each="category : ${categories}" th:value="${category.categoryid}" th:text="${category.name}" />
 		</select> <br>
-		<p>Are we missing a category? Make a new one!</p>
-		<a href="/addcategory" class="btn btn-warning">Add a new category</a>
-		<br> <label for="price">Price (in euros)</label> <input
-			type="text" id="price" th:field=*{price} /><br>
-		<p>Give us your contact information</p>
-		<label for="seller.name">Name</label> <input type="text"
-			id="seller.name" th:field="*{seller.name}" /><br> <label
-			for="seller.phonenumber">Phone number</label> <input type="text"
-			id="seller.phonenumber" th:field="*{seller.phonenumber}" /><br>
-		<label for="seller.email">Email</label> <input type="text"
-			id="seller.email" th:field="*{seller.email}" /><br> <input
-			type="submit" value="Add for sale" class="btn btn-success" />
+		<label for="price">Price (in euros)</label> 
+		<input type="text" id="price" th:field=*{price} /><br>
+		<h4>Give us your contact information</h4>
+		<label for="seller.name">Name</label> 
+			<input type="text" th:field="*{seller.name}" /><br> 
+		<label for="seller.phonenumber">Phone number</label> 
+			<input type="text" th:field="*{seller.phonenumber}" /><br>
+		<label for="seller.email">Email</label> 
+			<input type="text" th:field="*{seller.email}" /><br> 
+		<input type="submit" value="Add for sale" class="btn btn-success" />
 	</form>
 	<a href="/shop" class="btn btn-light">Back</a>
+	</div>
+	<div class="col-sm-8">
+	<h4>Are we missing a category? Make a new one!</h4>
+		<a href="/addcategory" class="btn btn-warning">Add a new category</a> <br><br>
+	</div>
+	</div>
 
 </body>
 </html>

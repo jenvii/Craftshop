@@ -3,6 +3,8 @@
 <head>
 <title>Add a category</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
 	<h1>Add a category</h1>
@@ -10,7 +12,7 @@
 		<label for="title">Name</label>
 		<input type="text" id="name" th:field=*{name}/>
 		<input type="submit" value="Add category"/>
-	</form>
+	</form> <br>
 	<a href="/add" class="btn btn-light">Back</a>
 </body>
 </html>

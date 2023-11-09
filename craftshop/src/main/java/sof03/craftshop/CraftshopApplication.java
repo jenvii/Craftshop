@@ -13,6 +13,8 @@ import sof03.craftshop.domain.SellerRepository;
 import sof03.craftshop.domain.Handicraft;
 import sof03.craftshop.domain.Category;
 import sof03.craftshop.domain.CategoryRepository;
+import sof03.craftshop.domain.User;
+import sof03.craftshop.domain.UserRepository;
 
 @SpringBootApplication
 public class CraftshopApplication {
@@ -24,7 +26,7 @@ public class CraftshopApplication {
 
 	@Bean
 	public CommandLineRunner handicrafts(HandicraftRepository handicraftRepository,
-			CategoryRepository categoryRepository, SellerRepository sellerRepository) {
+			CategoryRepository categoryRepository, SellerRepository sellerRepository, UserRepository userRepository) {
 		return (args) -> {
 			log.info("save categories");
 	        Category category1 = new Category("Crochet");
@@ -54,6 +56,15 @@ public class CraftshopApplication {
 			handicraftRepository.save(handicraft2);
 			for (Handicraft handicraft : handicraftRepository.findAll()) {
 				log.info(handicraft.toString());
+			}
+			
+			log.info("save users");
+			User user1 = new User("user", "$2a$10$x/4Nyl/E57/6WgV6CgjiceofeASxGIQ/vn5HV5rdIxj2Jh9c6.5hi", "USER" );
+			userRepository.save(user1);
+			User user2 = new User("seller", "$2a$10$zeqWg1XVZJkVKCfiERx8X.Dc66JuGpE4BVUZpyvSurEWY4/lTYk06", "SELLER");
+			userRepository.save(user2);
+			for (User user : userRepository.findAll()) {
+				log.info(user.toString());
 			}
 			
 		};
