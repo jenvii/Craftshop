@@ -2,21 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
-<title>Handicrafts</title>
+<title>HandyCrafter</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Marketplace for handmade products</h1>
+	<h1>HandyCrafter marketplace</h1>
 
 	<div class="row">
 		<div class="card col-sm-4" th:each="handicraft : ${handicrafts}">
 			<div class="card-header" th:text="${handicraft.name}"></div>
 			<div class="card-body">
-				<span th:text="${handicraft.description}"></span> <br> 
-				<span th:text="${handicraft.category != null ? handicraft.category.name : ''}"></span> <br>
-				<span th:text="${handicraft.price} + €"></span>
+				<span th:text="${'Description: ' + handicraft.description}"></span> <br> 
+				Category: <span th:text="${handicraft.category != null ? handicraft.category.name : ''}"></span> <br>
+				<span th:text="${'Price: ' + handicraft.price} + €"></span>
 			</div>
 			<div class="card-footer">
 				<a th:href="@{/seller/{id} (id=${handicraft.id})}" class="btn btn-secondary">Seller's contact information</a>

@@ -10,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Category {
@@ -17,6 +19,8 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long categoryid;
+	@NotNull
+	@Size(min=3, max=15, message="Please provide a category name that is 3-15 characters long.")
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")

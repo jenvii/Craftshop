@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jakarta.validation.Valid;
 import sof03.craftshop.domain.HandicraftRepository;
 import sof03.craftshop.domain.Seller;
 import sof03.craftshop.domain.SellerRepository;
@@ -27,7 +28,8 @@ public class HandicraftController {
 	@Autowired
 	SellerRepository sellerRepository;
 
-	// Sovelluksen aloitusnäkymä, jossa on listattuna kaikki myynnissä olevat tuotteet
+	// Sovelluksen aloitusnäkymä, jossa on listattuna kaikki myynnissä olevat
+	// tuotteet
 	@RequestMapping(value = "/shop", method = RequestMethod.GET)
 	public String handictaftList(Model model) {
 		model.addAttribute("handicrafts", handicraftRepository.findAll());
@@ -46,13 +48,16 @@ public class HandicraftController {
 		return "addhandicraft";
 	}
 
-	// Tallentaa uuden tuotteen ja myyjän tuotteelle
+	// Tallentaa tuotteen ja myyjän tuotteelle
 	@PreAuthorize("hasAuthority('SELLER')")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveHandicraft(@ModelAttribute Handicraft handicraft) {
+	public String saveHandicraft(@Valid Handicraft handicraft, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("categories", categoryRepository.findAll());
+			return "addhandicraft";
+		}
 		Seller seller = handicraft.getSeller();
 		sellerRepository.save(seller);
-		System.out.println("Handicraft: " + handicraft);
 		handicraftRepository.save(handicraft);
 		return "redirect:/shop";
 	}
@@ -74,6 +79,8 @@ public class HandicraftController {
 		model.addAttribute("categories", categoryRepository.findAll());
 		return "edithandicraft";
 	}
+
+	
 
 	// Palauttaa yleisen virhesivun
 	@RequestMapping(value = "/error", method = RequestMethod.GET)

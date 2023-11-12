@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" >
 
 <head>
-<title>Add to sale</title>
+<title>HandyCrafter | Add to sale</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" />
@@ -16,8 +16,19 @@
 
 	<form th:object="${handicraft}" th:action="@{/save}" action="#"
 		method="post">
+		
+		<div th:if="${#fields.hasErrors('name')}" class="alert alert-danger">
+    		<span th:errors="*{name}"></span>
+		</div>
+		<div th:if="${#fields.hasErrors('description')}" class="alert alert-danger">
+    		<span th:errors="*{description}"></span>
+		</div>
+		<div th:if="${#fields.hasErrors('price')}" class="alert alert-danger">
+   			<span th:errors="*{price}"></span>
+		</div>
+		
 		<label for="name">Product's name</label> 
-		<input type="text" id="name"th:field=*{name} /><br> 
+		<input type="text" id="name"th:field=*{name} /><br>
 		<label for="description">Description</label>
 		<input type="text" id="description" th:field=*{description} /><br>
 		<label for="Category">Category</label> 
@@ -34,6 +45,7 @@
 		<label for="seller.email">Email</label> 
 			<input type="text" th:field="*{seller.email}" /><br> 
 		<input type="submit" value="Add for sale" class="btn btn-success" />
+	
 	</form>
 	<a href="/shop" class="btn btn-light">Back</a>
 	</div>
