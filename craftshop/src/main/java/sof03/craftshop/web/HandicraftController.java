@@ -1,6 +1,7 @@
 package sof03.craftshop.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,13 +27,15 @@ public class HandicraftController {
 	@Autowired
 	SellerRepository sellerRepository;
 
+	// Sovelluksen aloitusnäkymä, jossa on listattuna kaikki myynnissä olevat tuotteet
 	@RequestMapping(value = "/shop", method = RequestMethod.GET)
 	public String handictaftList(Model model) {
 		model.addAttribute("handicrafts", handicraftRepository.findAll());
 		return "handicraftlist";
 	}
 
-	//PALAUTTAA LOMAKKEEN SELAIMEEN
+	// Palauttaa uusien tuotteiden lisäyslomakkeen
+	@PreAuthorize("hasAuthority('SELLER')")
 	@RequestMapping(value = "/add")
 	public String addHandicraft(Model model) {
 		Handicraft handicraft = new Handicraft();
@@ -43,7 +46,8 @@ public class HandicraftController {
 		return "addhandicraft";
 	}
 
-	// TALLENTAA UUDEN KÄSITYÖN
+	// Tallentaa uuden tuotteen ja myyjän tuotteelle
+	@PreAuthorize("hasAuthority('SELLER')")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveHandicraft(@ModelAttribute Handicraft handicraft) {
 		Seller seller = handicraft.getSeller();
@@ -53,12 +57,16 @@ public class HandicraftController {
 		return "redirect:/shop";
 	}
 
+	// Poistaa tuotteen
+	@PreAuthorize("hasAuthority('SELLER')")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteHandicraft(@PathVariable("id") Long handicraftId, Model model) {
 		handicraftRepository.deleteById(handicraftId);
 		return "redirect:/shop";
 	}
 
+	// Palauttaa tuotteen editointilomakkeen
+	@PreAuthorize("hasAuthority('SELLER')")
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String editHandicraft(@PathVariable("id") Long handicraftId, Model model) {
 		Handicraft handicraft = handicraftRepository.findById(handicraftId).orElse(null);
@@ -67,6 +75,7 @@ public class HandicraftController {
 		return "edithandicraft";
 	}
 
+	// Palauttaa yleisen virhesivun
 	@RequestMapping(value = "/error", method = RequestMethod.GET)
 	public String error(Model model) {
 		return "error";

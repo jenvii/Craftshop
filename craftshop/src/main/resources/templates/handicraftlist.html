@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
 <title>Handicrafts</title>
@@ -20,13 +20,17 @@
 			</div>
 			<div class="card-footer">
 				<a th:href="@{/seller/{id} (id=${handicraft.id})}" class="btn btn-secondary">Seller's contact information</a>
-				<a th:href="@{/edit/{id} (id=${handicraft.id})}" class="btn btn-info">Edit</a>
-				<a th:href="@{/delete/{id} (id=${handicraft.id})}" class="btn btn-danger">Remove</a>
+				<a sec:authorize="hasAuthority('SELLER')" th:href="@{/edit/{id} (id=${handicraft.id})}" class="btn btn-info">Edit</a>
+				<a sec:authorize="hasAuthority('SELLER')" th:href="@{/delete/{id} (id=${handicraft.id})}" class="btn btn-danger">Remove</a>
 			</div>
 		</div>
 	</div>
 	<br>
-	<a href="/add" class="btn btn-success">Add for sale</a>
+	<a sec:authorize="hasAuthority('SELLER')" href="/add" class="btn btn-success">Add for sale</a>
+
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" class="btn btn-danger">
+	</form>
 
 </body>
 </html>
