@@ -38,7 +38,7 @@ public class UserRepositoryTest {
 		}
 		assertThat(users).contains(user1, user2);
 	}
-	
+
 	// Testataan uuden käyttäjän poistoa
 	@Test
 	public void deleteUser() {

@@ -17,13 +17,13 @@ public class HandicraftRepositoryTest {
 
 	@Autowired
 	private HandicraftRepository handicraftRepository;
-	
+
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
-	@Autowired 
-	private SellerRepository sellerRepository; 
-	
+
+	@Autowired
+	private SellerRepository sellerRepository;
+
 	// Testataan uuden käsityön (handicraft) luomista
 	@Test
 	public void createNewHandicraft() {
@@ -35,7 +35,7 @@ public class HandicraftRepositoryTest {
 		handicraftRepository.save(handicraft);
 		assertThat(handicraft.getId()).isNotNull();
 	}
-	
+
 	// Testataan valmiiden käsitöiden etsimistä
 	@Test
 	public void searchForHandicrafts() {
@@ -52,7 +52,7 @@ public class HandicraftRepositoryTest {
 		}
 		assertThat(handicrafts).contains(handicraft1, handicraft2, handicraft3, handicraft4);
 	}
-	
+
 	// Testataan käsityön poistamista
 	@Test
 	public void deleteHandicraft() {

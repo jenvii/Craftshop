@@ -20,7 +20,7 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long categoryid;
 	@NotNull
-	@Size(min=3, max=15, message="Please provide a category name that is 3-15 characters long.")
+	@Size(min = 3, max = 25, message = "Please provide a category name that is 3-25 characters long.")
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")

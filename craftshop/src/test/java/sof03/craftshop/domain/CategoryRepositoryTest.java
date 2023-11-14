@@ -40,7 +40,7 @@ public class CategoryRepositoryTest {
 		}
 		assertThat(categories).contains(category1, category2, category3);
 	}
-	
+
 	// Testataan neljännen kategorian poistamista
 	@Test
 	public void deleteCategory() {

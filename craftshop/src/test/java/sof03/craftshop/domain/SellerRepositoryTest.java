@@ -26,7 +26,7 @@ public class SellerRepositoryTest {
 		assertThat(seller.getSellerId()).isNotNull();
 	}
 
-	// Testataan kolmen myyjän etsimistä
+	// Testataan myyjien etsimistä
 	@Test
 	public void searchForSellers() {
 		List<Seller> sellers = new ArrayList<>();
@@ -41,7 +41,7 @@ public class SellerRepositoryTest {
 		assertThat(sellers).contains(seller1, seller2, seller4);
 	}
 	
-	// Testataan jäljelle jääneen myyjän poistoa
+	// Testataan myyjän poistoa
 	@Test
 	public void deleteSeller() {
 		Seller seller3 = sellerRepository.findById(3L).get();

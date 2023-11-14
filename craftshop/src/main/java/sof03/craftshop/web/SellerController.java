@@ -16,6 +16,7 @@ public class SellerController {
 	@Autowired
 	HandicraftRepository handicraftRepository;
 
+	// Palauttaa tietyn tuotteen myyjän tiedot
 	@RequestMapping(value = "/seller/{id}")
 	public String findSellerInfo(@PathVariable("id") Long handicraftId, Model model) {
 		Handicraft handicraft = handicraftRepository.findById(handicraftId).orElse(null);

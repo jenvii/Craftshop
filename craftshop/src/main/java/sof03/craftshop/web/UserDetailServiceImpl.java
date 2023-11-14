@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import sof03.craftshop.domain.UserRepository;
 import sof03.craftshop.domain.User;
 
-
-
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 	private final UserRepository repository;

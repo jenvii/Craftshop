@@ -29,34 +29,33 @@ public class CraftshopApplication {
 			CategoryRepository categoryRepository, SellerRepository sellerRepository, UserRepository userRepository) {
 		return (args) -> {
 			log.info("save categories");
-	        Category category1 = new Category("Crochet");
-	        categoryRepository.save(category1);
-	        Category category2 = new Category("Knit");
-	        categoryRepository.save(category2);
-	        Category category3 = new Category("Oil painting");
-	        categoryRepository.save(category3);
-	        Category category4 = new Category("Woodworking");
-	        categoryRepository.save(category4);
-	        log.info("fetch all categories");
-	        for (Category category : categoryRepository.findAll()) {
-	            log.info(category.toString());
-	        }
-	        
-	        log.info("save sellers");
-	        Seller seller1 = new Seller("Pirkko", "040 1234567", "pirkko@pirkkonen.fi");
-	        sellerRepository.save(seller1);
-	        Seller seller2 = new Seller("Jarkko", "050 9876543", "jarkko@jarkkonen.com");
-	        sellerRepository.save(seller2);
-	        Seller seller3 = new Seller("Riina", "045 5678912", "riina@riinala.com");
-	        sellerRepository.save(seller3);
-	        Seller seller4 = new Seller("Niina", "040 7654329", "niina@niinanen.fi");
-	        sellerRepository.save(seller4);
-	        log.info("fetch all sellers");
-	        for (Seller seller : sellerRepository.findAll()) {
-	        	log.info(seller.toString());
-	        }
-	        	
-			
+			Category category1 = new Category("Crochet");
+			categoryRepository.save(category1);
+			Category category2 = new Category("Knit");
+			categoryRepository.save(category2);
+			Category category3 = new Category("Oil painting");
+			categoryRepository.save(category3);
+			Category category4 = new Category("Woodworking");
+			categoryRepository.save(category4);
+			log.info("fetch all categories");
+			for (Category category : categoryRepository.findAll()) {
+				log.info(category.toString());
+			}
+
+			log.info("save sellers");
+			Seller seller1 = new Seller("Pirkko", "040 1234567", "pirkko@pirkkonen.fi");
+			sellerRepository.save(seller1);
+			Seller seller2 = new Seller("Jarkko", "050 9876543", "jarkko@jarkkonen.com");
+			sellerRepository.save(seller2);
+			Seller seller3 = new Seller("Riina", "045 5678912", "riina@riinala.com");
+			sellerRepository.save(seller3);
+			Seller seller4 = new Seller("Niina", "040 7654329", "niina@niinanen.fi");
+			sellerRepository.save(seller4);
+			log.info("fetch all sellers");
+			for (Seller seller : sellerRepository.findAll()) {
+				log.info(seller.toString());
+			}
+
 			log.info("save handicrafts");
 			Handicraft handicraft1 = new Handicraft("Socks", "100% wool socks. Comfy for winter!", category2, 10L, seller1);
 			handicraftRepository.save(handicraft1);
@@ -68,19 +67,21 @@ public class CraftshopApplication {
 			handicraftRepository.save(handicraft4);
 			Handicraft handicraft5 = new Handicraft("Pink Sweater", "The warmest (and cutest) sweater for the coldest season", category2, 30L, seller3);
 			handicraftRepository.save(handicraft5);
+			log.info("fetch all handicrafts");
 			for (Handicraft handicraft : handicraftRepository.findAll()) {
 				log.info(handicraft.toString());
 			}
-			
+
 			log.info("save users");
-			User user1 = new User("user", "$2a$10$x/4Nyl/E57/6WgV6CgjiceofeASxGIQ/vn5HV5rdIxj2Jh9c6.5hi", "USER" );
+			User user1 = new User("user", "$2a$10$x/4Nyl/E57/6WgV6CgjiceofeASxGIQ/vn5HV5rdIxj2Jh9c6.5hi", "USER");
 			userRepository.save(user1);
 			User user2 = new User("seller", "$2a$10$zeqWg1XVZJkVKCfiERx8X.Dc66JuGpE4BVUZpyvSurEWY4/lTYk06", "SELLER");
 			userRepository.save(user2);
+			log.info("fetch all users");
 			for (User user : userRepository.findAll()) {
 				log.info(user.toString());
 			}
-			
+
 		};
 
 	}

@@ -18,6 +18,7 @@ public class CategoryController {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
+	// Palauttaa lomakkeen kategorian lisäämiselle
 	@PreAuthorize("hasAuthority('SELLER')")
 	@RequestMapping(value = "/addcategory")
 	public String AddCategory(Model model) {
@@ -25,6 +26,7 @@ public class CategoryController {
 		return "addcategory";
 	}
 	
+	// Tallentaa lisätyn kategorian
 	@PreAuthorize("hasAuthority('SELLER')")
 	@RequestMapping(value="/savecategory", method = RequestMethod.POST)
 	public String saveCategory(@Valid Category category, BindingResult bindingResult) {
@@ -32,6 +34,6 @@ public class CategoryController {
 			return "addcategory";
 		}
 		categoryRepository.save(category);
-		return "redirect:add"; 
+		return "redirect:add";
 	}
 }

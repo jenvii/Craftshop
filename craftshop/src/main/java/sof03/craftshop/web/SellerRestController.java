@@ -16,7 +16,7 @@ import sof03.craftshop.domain.SellerRepository;
 
 @CrossOrigin
 @Controller
-public class SellerRestRepository {
+public class SellerRestController {
 
 	@Autowired
 	private SellerRepository sellerRepository;

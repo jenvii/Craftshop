@@ -17,8 +17,8 @@ public class Handicraft {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@NotNull(message="Please provide a name for your product.")
-	@Size(min=3, max=30, message="Your product's name should be 3-30 letters long.")
+	@NotNull(message = "Please provide a name for your product.")
+	@Size(min = 3, max = 30, message = "Your product's name should be 3-30 letters long.")
 	private String name;
 	private String description;
 
@@ -26,7 +26,7 @@ public class Handicraft {
 	@JsonIgnoreProperties("handicrafts")
 	@JoinColumn(name = "categoryid")
 	private Category category;
-	@NotNull
+	@NotNull(message = "Please set a price for your product.")
 	private Long price;
 
 	@ManyToOne

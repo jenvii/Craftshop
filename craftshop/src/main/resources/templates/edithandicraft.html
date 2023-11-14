@@ -1,14 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>HandyCrafter | Edit handicraft</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
-	th:href="@{/css/bootstrap.min.css}" />
+	<title>HandyCrafter | Edit handicraft</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
 	<h1>Edit handicraft</h1>
-	<form th:object="${handicraft}" th:action="@{/save}" action="#" method="post">
+	<form th:object="${handicraft}" th:action="@{/saveedits}" action="#" method="post">
 		
 		<div th:if="${#fields.hasErrors('name')}" class="alert alert-danger">
     		<span th:errors="*{name}"></span>
@@ -32,7 +31,7 @@
 		<input type="text" id="price" th:field=*{price}/>
 		<input type="hidden" id="id" th:field=*{id}/>
 		<input type="hidden" id="seller" th:field=*{seller}/>
-		<input type="submit" value="Edit handicraft"/>
+		<input type="submit" value="Edit handicraft" class="btn btn-success"/>
 	</form> <br>
 	<a href="/shop" class="btn btn-light">Back</a>
 </body>

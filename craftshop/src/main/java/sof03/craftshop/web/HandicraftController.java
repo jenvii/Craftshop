@@ -28,8 +28,7 @@ public class HandicraftController {
 	@Autowired
 	SellerRepository sellerRepository;
 
-	// Sovelluksen aloitusnäkymä, jossa on listattuna kaikki myynnissä olevat
-	// tuotteet
+	// Sovelluksen aloitusnäkymä, jossa on listattuna kaikki myynnissä olevat tuotteet
 	@RequestMapping(value = "/shop", method = RequestMethod.GET)
 	public String handictaftList(Model model) {
 		model.addAttribute("handicrafts", handicraftRepository.findAll());
@@ -48,7 +47,7 @@ public class HandicraftController {
 		return "addhandicraft";
 	}
 
-	// Tallentaa tuotteen ja myyjän tuotteelle
+	// Tallentaa uuden tuotteen ja myyjän tuotteelle
 	@PreAuthorize("hasAuthority('SELLER')")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveHandicraft(@Valid Handicraft handicraft, BindingResult bindingResult, Model model) {
@@ -80,9 +79,21 @@ public class HandicraftController {
 		return "edithandicraft";
 	}
 
-	
+	// Tallentaa editoidun tuotteen
+	@PreAuthorize("hasAuthority('SELLER')")
+	@RequestMapping(value = "/saveedits", method = RequestMethod.POST)
+	public String saveEditedHandicraft(@Valid Handicraft handicraft, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("categories", categoryRepository.findAll());
+			return "edithandicraft";
+		}
+		Seller seller = handicraft.getSeller();
+		sellerRepository.save(seller);
+		handicraftRepository.save(handicraft);
+		return "redirect:/shop";
+	}
 
-	// Palauttaa yleisen virhesivun
+	// Palauttaa virhesivun
 	@RequestMapping(value = "/error", method = RequestMethod.GET)
 	public String error(Model model) {
 		return "error";
