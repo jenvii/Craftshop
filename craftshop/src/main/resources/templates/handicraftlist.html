@@ -27,7 +27,11 @@
 	<br>
 	<a sec:authorize="hasAuthority('SELLER')" href="/add" class="btn btn-success">Add for sale</a>
 
-	<form th:action="@{/logout}" method="post">
+	<div sec:authorize="isAnonymous()">
+		<a th:href="@{/login}" class="btn btn-primary">Log in</a>
+	</div>
+
+	<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
 		<input type="submit" value="Sign Out" class="btn btn-danger">
 	</form>
 

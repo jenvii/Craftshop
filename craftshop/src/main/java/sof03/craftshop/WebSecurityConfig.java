@@ -31,6 +31,8 @@ public class WebSecurityConfig {
 	    .authorizeHttpRequests( authorize -> authorize
 	          .requestMatchers(antMatcher("/css/**")).permitAll()
 	          .requestMatchers(toH2Console()).permitAll()
+	          .requestMatchers(antMatcher("/shop")).permitAll()
+	          .requestMatchers(antMatcher("/seller/{id}")).permitAll()
 	          .anyRequest().authenticated()
 	    )
 	     .csrf(csrf -> csrf
