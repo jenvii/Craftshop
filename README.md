@@ -1,12 +1,12 @@
-## HandyCrafter marketplace
-HandyCrafter is a marketplace for handy people to sell their beautiful work. Sellers can list theier products and users can contact the sellers via email, text message or a call. Users logged in as "user" can view products and seller information. Users loggen in as a "seller" can do the same things as "user" and also add new handicrafts, edit them, remove them and add new categories for handicrafts.
+# HandyCrafter marketplace
+HandyCrafter is a marketplace for handy people to sell their beautiful work. Sellers can list their products and users can contact the sellers via email, text message or a call. Users logged in as "user" can view products and seller information. Users logged in as a "seller" can do the same things as "user" and also add new handicrafts, edit them, remove them and add new categories for handicrafts.
 
-# Technologies used
+## Technologies used
 - Java Spring Boot
 - Thymeleaf
 - JUnit tests
 
-# Screenshots
+## Screenshots
 User's view of products
 ![Screenshot of the app's product view as a user](./screenshots/userview.png)
 Seller's infromation
